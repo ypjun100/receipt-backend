@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Kopub;
+    src: url('../fonts/Kopub_Medium.woff2') format('woff2'),
+        url('../fonts/Kopub_Medium.woff') format('woff');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Kopub;
+    src: url('../fonts/Kopub_Bold.woff2') format('woff2'),
+        url('../fonts/Kopub_Bold.woff') format('woff');
+    font-weight: 800;
+}
+
+* { font-family: Kopub; margin: 0; padding: 0; }
+.div-main { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; width: 80vw;}
+h1 { font-size: 11pt; color: #505050; font-weight: 400; margin-top: 2vh;}
