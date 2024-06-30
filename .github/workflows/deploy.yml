@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Node version check
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16
+        - name: Install dependencies
+          run: npm install
+        - name: Build
+          run: npm run build
+        - name: Project test
+          run: npm start
+          env:
+            NODE_ENV: test
+        - name: Depoly
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            scripts: |
+              whoami
+              cd ${{ secrets.PROJECT_LOCATION }}
+              pwd
+              ./deploy.sh
