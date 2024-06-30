@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { REDIS_HOST, REDIS_PORT } = process.env;
+const { NODE_ENV } = process.env;
 
 const cors = require('cors');
 const logger = require('morgan');
@@ -27,11 +27,11 @@ app.use(compression(configs.compressionConfig));
 app.use(cookieParser());
 
 // 세션 미들웨어 연결
-app.use(sessionMiddleware());
+if (NODE_ENV != 'test')
+  app.use(sessionMiddleware());
 
 // 라우터 연결
 configs.routerConfig(app);
-// app.use(express.static(path.join(__dirname, 'resources')));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
