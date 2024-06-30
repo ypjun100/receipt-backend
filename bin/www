@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('dotenv').config();
+const { NODE_ENV } = process.env;
 
 /**
  * Module dependencies.
@@ -29,7 +29,8 @@ var server = http.createServer(app);
  */
 
 // MySQL 연결
-sequelize.sync()
+if (NODE_ENV != 'test') {
+  sequelize.sync()
   .then(() => {
     console.log('Successfully connected to MySQL server.');
     server.listen(port);
@@ -39,6 +40,7 @@ sequelize.sync()
   .catch((err) => {
     console.error('Database connection error', err);
   });
+}
 
 /**
  * Normalize a port into a number, string, or false.
