@@ -27,7 +27,5 @@ jobs:
             key: ${{ secrets.SSH_KEY }}
             port: ${{ secrets.SSH_PORT }}
             script: |
-              whoami
               cd ${{ secrets.PROJECT_LOCATION }}
-              pwd
               ./deploy.sh
