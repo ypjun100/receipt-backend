@@ -9,7 +9,7 @@ const createReceipt = (req, res) => {
         const tmp_cur_date = new Date();
 
         const { receipt_name, receipt_price, receipt_people, user_account } = req.body;
-        const receipt_date = `${tmp_cur_date.getFullYear()}-${("0" + (tmp_cur_date.getMonth()+1).toString()).slice(-2)}-${tmp_cur_date.getDate()}`;
+        const receipt_date = `${tmp_cur_date.getFullYear()}-${("0" + (tmp_cur_date.getMonth()+1).toString()).slice(-2)}-${("0" + tmp_cur_date.getDate().toString()).slice(-2)}`;
         const receipt_not_finish_people_names = '홍길동&and;'.repeat(receipt_people);
         const receipt_user_id = req.session._id;
         const receipt_account_id = user_account.account_id;
